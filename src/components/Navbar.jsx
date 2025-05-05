@@ -14,9 +14,14 @@ function Navbar() {
     <nav className="bg-blue-600 text-white p-4">
       <div className="container mx-auto flex justify-between">
         <Link to="/" className="text-xl font-bold">Blog Dashboard</Link>
-        <div>
+        <div className="space-x-4">
           {isAuthenticated ? (
-            <button onClick={handleLogout} className="btn">Logout</button>
+            <>
+              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/posts">Posts</Link>
+              <Link to="/new-post">New Post</Link>
+              <button onClick={handleLogout} className="btn">Logout</button>
+            </>
           ) : (
             <>
               <Link to="/login" className="mr-4">Login</Link>

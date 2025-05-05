@@ -1,7 +1,15 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchPosts } from '../store/postsSlice'
 
 function Dashboard() {
-  const { user } = useSelector((state) => state.auth)
+  const { user, email } = useSelector((state) => state.auth)
+  const { posts } = useSelector((state) => state.posts)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchPosts())
+  }, [dispatch])
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded shadow mt-6">
@@ -11,8 +19,8 @@ function Dashboard() {
         <div className="flex items-center">
           <div className="w-16 h-16 bg-gray-200 rounded-full mr-4"></div>
           <div>
-            <p>Name: {user?.username || 'Mohamed Fayez'}</p>
-            <p>Email: mohamed.ngloh@vodafone.com</p>
+            <p>Name: {user || 'Unknown User'}</p>
+            <p>Email: {email || 'No email provided'}</p>
             <p>Designation: Sr. SWE</p>
             <p>Location: Cairo, EG</p>
           </div>
@@ -22,6 +30,20 @@ function Dashboard() {
           standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
           a type specimen book.
         </p>
+      </div>
+      <div className="border p-4">
+        <h2 className="text-xl mb-2">Posts/Articles</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {posts.map((post) => (
+            <div key={post.id} className="border p-4 rounded">
+              <div className="w-16 h-16 bg-gray-200 rounded-full mb-2"></div>
+              <h3 className="font-bold">Post headline</h3>
+              <p>published at: 12/12/2012</p>
+              <p>{post.body.substring(0, 50)}...</p>
+              <p className="text-blue-600">readmore...</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
