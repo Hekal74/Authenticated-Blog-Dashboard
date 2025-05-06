@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchPosts } from '../store/postsSlice'
 
 function Dashboard() {
-  const { user, email } = useSelector((state) => state.auth)
+  const { user, email, role, location } = useSelector((state) => state.auth)
   const { posts } = useSelector((state) => state.posts)
   const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1)
@@ -13,7 +13,6 @@ function Dashboard() {
     dispatch(fetchPosts())
   }, [dispatch])
 
-  // Calculate pagination
   const indexOfLastPost = currentPage * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
@@ -33,8 +32,8 @@ function Dashboard() {
           <div>
             <p>Name: {user || 'Unknown User'}</p>
             <p>Email: {email || 'No email provided'}</p>
-            <p>Designation: Sr. SWE</p>
-            <p>Location: Cairo, EG</p>
+            <p>Designation: {role || 'Software Developer'}</p>
+            <p>Location: {location || 'Cairo, EG'}</p>
           </div>
         </div>
         <p className="mt-2 text-gray-600">

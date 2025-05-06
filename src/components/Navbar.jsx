@@ -26,7 +26,7 @@ function Navbar() {
           ) : (
             <>
               <Link to="/Authenticated-Blog-Dashboard/login" className="mr-4">Login</Link>
-              <Link to="/Authenticated-Blog-Dashboard/signup">Signup</Link>
+              <Link to="/Authenticated-Blog-Dashboard/signup">Sign Up</Link>
             </>
           )}
         </div>

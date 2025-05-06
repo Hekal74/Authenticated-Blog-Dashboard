@@ -8,6 +8,8 @@ function Signup() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [role, setRole] = useState('')
+  const [location, setLocation] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -15,14 +17,13 @@ function Signup() {
     e.preventDefault()
     await fetch('https://jsonplaceholder.typicode.com/users', {
       method: 'POST',
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ username, email, password, role, location}),
     })
 
-    const userData = { username, email, password }
+    const userData = { username, email, password, role, location}
     localStorage.setItem('registeredUser', JSON.stringify(userData))
-    console.log('Saved to localStorage:', localStorage.getItem('registeredUser')) // للتأكد من الحفظ
 
-    dispatch(signup({ username: username, email: email, token: 'fake-token' }))
+    dispatch(signup({ username: username, email: email, role: role, location: location, token: 'fake-token' }))
     navigate('/Authenticated-Blog-Dashboard/login')
   }
 
@@ -33,6 +34,8 @@ function Signup() {
         <Input label="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
         <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <Input label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Input label="Role" type="text" value={role} onChange={(e) => setRole(e.target.value)} />
+        <Input label="Location" type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
         <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">Signup</button>
       </form>
     </div>
