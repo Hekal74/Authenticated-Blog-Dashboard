@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+// import { Navigate } from 'react-router-dom'
 
 const initialState = {
   isAuthenticated: !!localStorage.getItem('token'),
@@ -37,6 +38,7 @@ const authSlice = createSlice({
       localStorage.removeItem('token')
       localStorage.removeItem('username')
       localStorage.removeItem('email')
+      // Navigate('http://localhost:5173/Authenticated-Blog-Dashboard/')
     },
   },
 })

@@ -6,6 +6,8 @@ import NewPost from './pages/NewPost'
 import PrivateRoute from './components/PrivateRoute'
 import Navbar from './components/Navbar'
 import Signup from './pages/signup'
+import ErrorPage from './pages/ErrorPage'
+import Home from './pages/Home'
 
 function App() {
   return (
@@ -26,7 +28,9 @@ function App() {
           path="/Authenticated-Blog-Dashboard/new-post"
           element={<PrivateRoute><NewPost /></PrivateRoute>}
         />
-        <Route path="/Authenticated-Blog-Dashboard" element={<Navigate to="/Authenticated-Blog-Dashboard/login" />} />
+        <Route path="/Authenticated-Blog-Dashboard" element={<Home />} />
+        <Route path="/Authenticated-Blog-Dashboard/home" element={<Home />} />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </div>
   )
