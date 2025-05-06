@@ -9,7 +9,7 @@ import Signup from './pages/signup'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-400">
+    <div className="min-h-screen bg-gray-100">
       <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />

@@ -57,7 +57,7 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <Input label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">Login</button>
+        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">Sign in</button>
       </form>
     </div>
   )

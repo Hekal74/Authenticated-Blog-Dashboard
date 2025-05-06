@@ -15,7 +15,7 @@ function Dashboard() {
     <div className="max-w-4xl mx-auto p-6 bg-white rounded shadow mt-6">
       <h1 className="text-3xl mb-6">Dashboard</h1>
       <div className="border p-4 mb-6">
-        <h2 className="text-xl mb-2">Profile Info</h2>
+        <h2 className="text-xl mb-2">Profile Information</h2>
         <div className="flex items-center">
           <div className="w-16 h-16 bg-gray-200 rounded-full mr-4"></div>
           <div>
