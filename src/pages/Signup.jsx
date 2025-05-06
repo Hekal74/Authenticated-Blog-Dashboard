@@ -23,7 +23,7 @@ function Signup() {
     console.log('Saved to localStorage:', localStorage.getItem('registeredUser')) // للتأكد من الحفظ
 
     dispatch(signup({ username: username, email: email, token: 'fake-token' }))
-    navigate('/dashboard')
+    navigate('/Authenticated-Blog-Dashboard/login')
   }
 
   return (

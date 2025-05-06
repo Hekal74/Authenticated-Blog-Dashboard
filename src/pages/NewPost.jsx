@@ -13,7 +13,7 @@ function NewPost() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await dispatch(addPost({ title, body }))
-    navigate('/posts')
+    navigate('/Authenticated-Blog-Dashboard/posts')
   }
 
   return (
