@@ -14,9 +14,8 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // جيب بيانات اليوزر من localStorage
     const storedUserStr = localStorage.getItem('registeredUser')
-    console.log('Stored User String:', storedUserStr) // للتأكد من النص المخزن
+    console.log('Stored User String:', storedUserStr) 
 
     let storedUser = null
     if (storedUserStr) {
@@ -26,26 +25,18 @@ function Login() {
         console.error('Error parsing stored user:', err)
       }
     }
-    console.log('Parsed Stored User:', storedUser) // للتأكد من الـ parsing
+    console.log('Parsed Stored User:', storedUser) 
 
-    // نظّف الـ email من الفراغات وخلّيه lowercase
+   
     const cleanedEmail = email.trim().toLowerCase()
     const storedEmail = storedUser?.email?.trim().toLowerCase() || ''
 
-    // اطبع القيم للتأكد من المقارنة
-    console.log('Entered Email (cleaned):', cleanedEmail)
-    console.log('Stored Email (cleaned):', storedEmail)
-    console.log('Entered Password:', password)
-    console.log('Stored Password:', storedUser?.password || 'Not found')
 
     if (storedUser && storedEmail === cleanedEmail && storedUser.password === password) {
       console.log('Login successful - Condition met')
-      // لو الإيميل والباسورد صح، نفّذ الـ login
       dispatch(login({ username: storedUser.username, email: storedUser.email, token: 'fake-token' }))
-      navigate('/dashboard')
+      navigate('/Authenticated-Blog-Dashboard/dashboard')
     } else {
-      console.log('Login failed - Condition not met')
-      // لو مش موجود أو البيانات غلط، اعرض رسالة خطأ
       setError('Invalid email or password. Please check your credentials.')
     }
   }

@@ -13,18 +13,15 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // محاكاة إضافة يوزر جديد باستخدام JSONPlaceholder
     await fetch('https://jsonplaceholder.typicode.com/users', {
       method: 'POST',
       body: JSON.stringify({ username, email, password }),
     })
 
-    // احفظ بيانات اليوزر في localStorage
     const userData = { username, email, password }
     localStorage.setItem('registeredUser', JSON.stringify(userData))
     console.log('Saved to localStorage:', localStorage.getItem('registeredUser')) // للتأكد من الحفظ
 
-    // نفّذ الـ signup في Redux
     dispatch(signup({ username: username, email: email, token: 'fake-token' }))
     navigate('/dashboard')
   }

@@ -12,21 +12,21 @@ function App() {
     <div className="min-h-screen bg-gray-100">
       <Navbar />
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/Authenticated-Blog-Dashboard/login" element={<Login />} />
+        <Route path="/Authenticated-Blog-Dashboard/signup" element={<Signup />} />
         <Route
-          path="/dashboard"
+          path="/Authenticated-Blog-Dashboard/dashboard"
           element={<PrivateRoute><Dashboard /></PrivateRoute>}
         />
         <Route
-          path="/posts"
+          path="/Authenticated-Blog-Dashboard/posts"
           element={<PrivateRoute><Posts /></PrivateRoute>}
         />
         <Route
-          path="/new-post"
+          path="/Authenticated-Blog-Dashboard/new-post"
           element={<PrivateRoute><NewPost /></PrivateRoute>}
         />
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/Authenticated-Blog-Dashboard" element={<Navigate to="/Authenticated-Blog-Dashboard/login" />} />
       </Routes>
     </div>
   )

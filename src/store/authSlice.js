@@ -37,8 +37,6 @@ const authSlice = createSlice({
       localStorage.removeItem('token')
       localStorage.removeItem('username')
       localStorage.removeItem('email')
-      // حذفت السطر ده عشان ميمسحش بيانات الـ signup
-      // localStorage.removeItem('registeredUser')
     },
   },
 })
