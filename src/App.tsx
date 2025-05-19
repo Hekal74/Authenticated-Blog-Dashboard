@@ -7,6 +7,8 @@ import NewPost from './pages/NewPost';
 import PostDetail from './pages/PostDetail';
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
         <Route path="/new-post" element={<PrivateRoute><NewPost /></PrivateRoute>} />
         <Route path="/post/:id" element={<PrivateRoute><PostDetail /></PrivateRoute>} />
         <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/Authenticated-Blog-Dashboard" element={<Home />} />
+        <Route path="/Authenticated-Blog-Dashboard/home" element={<Home />} />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </div>
   );
