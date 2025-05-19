@@ -36,23 +36,28 @@ function Signup() {
     e.preventDefault();
     if (!validateForm()) return;
 
-    // تحقق لو الـ email موجود في JSONPlaceholder
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/users?email=${email}`);
-    if (response.data.length > 0) {
-      setError('This email is already registered.');
-      return;
+    try {
+      const response = await axios.get(`https://jsonplaceholder.typicode.com/users?email=${email}`);
+      if (response.data.length > 0) {
+        setError('This email is already registered.');
+        return;
+      }
+
+      await fetch('https://jsonplaceholder.typicode.com/users', {
+        method: 'POST',
+        body: JSON.stringify({ username, email, password, position, location }),
+      });
+
+      const userData = { username, email, password, position, location };
+      localStorage.setItem('registeredUser', JSON.stringify(userData));
+
+      dispatch(signup({ username, email, position, location, token: 'fake-token' }));
+
+      navigate('/dashboard', { replace: true });
+    } catch (err) {
+      setError('An error occurred during signup. Please try again.');
+      console.error('Signup error:', err);
     }
-
-    await fetch('https://jsonplaceholder.typicode.com/users', {
-      method: 'POST',
-      body: JSON.stringify({ username, email, password, position, location }),
-    });
-
-    const userData = { username, email, password, position, location };
-    localStorage.setItem('registeredUser', JSON.stringify(userData));
-
-    dispatch(signup({ username, email, position, location, token: 'fake-token' }));
-    navigate('/dashboard');
   };
 
   return (
@@ -60,12 +65,14 @@ function Signup() {
       <h2 className="text-2xl mb-4">Signup</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <Input label="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <Input label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <Input label="Position" value={position} onChange={(e) => setPosition(e.target.value)} />
-        <Input label="Location" value={location} onChange={(e) => setLocation(e.target.value)} />
-        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">Signup</button>
+        <Input label="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <Input label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <Input label="Position" value={position} onChange={(e) => setPosition(e.target.value)} required />
+        <Input label="Location" value={location} onChange={(e) => setLocation(e.target.value)} required />
+        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition-colors duration-200">
+          Signup
+        </button>
       </form>
     </div>
   );

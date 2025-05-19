@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/',
+  base: '/Authenticated-Blog-Dashboard/',
   plugins: [
     react(),
     tailwindcss(),

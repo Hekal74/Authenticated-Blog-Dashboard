@@ -36,7 +36,7 @@ function Login() {
         location: storedUser.location, 
         token: 'fake-token' 
       }));
-      navigate('/dashboard');
+      navigate('/dashboard', { replace: true });
     } else {
       setError('Invalid email or password. Please sign up first.');
     }
@@ -47,9 +47,26 @@ function Login() {
       <h2 className="text-2xl mb-4">Login</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <Input label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">Login</button>
+        <Input 
+          label="Email" 
+          type="email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          required 
+        />
+        <Input 
+          label="Password" 
+          type="password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          required 
+        />
+        <button 
+          type="submit" 
+          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition-colors duration-200"
+        >
+          Login
+        </button>
       </form>
     </div>
   );
