@@ -21,9 +21,9 @@ function App() {
         <Route path="/posts" element={<PrivateRoute><Posts /></PrivateRoute>} />
         <Route path="/new-post" element={<PrivateRoute><NewPost /></PrivateRoute>} />
         <Route path="/post/:id" element={<PrivateRoute><PostDetail /></PrivateRoute>} />
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/Authenticated-Blog-Dashboard" element={<Home />} />
-        <Route path="/Authenticated-Blog-Dashboard/home" element={<Home />} />
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </div>

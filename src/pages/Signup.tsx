@@ -17,20 +17,17 @@ function Signup() {
   const navigate = useNavigate();
 
   const validateForm = (): boolean => {
-    // تحقق من الإيميل باستخدام regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError('Please enter a valid email address.');
       return false;
     }
 
-    // تحقق من طول الباسورد
     if (password.length <= 6) {
       setError('Password must be longer than 6 characters.');
       return false;
     }
 
-    // لو كل حاجة صح، خلّص الـ error
     setError(null);
     return true;
   };

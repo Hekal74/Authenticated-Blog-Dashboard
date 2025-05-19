@@ -10,13 +10,13 @@ function Home() {
         </p>
         <div className="flex justify-center space-x-4 mb-8">
           <Link 
-            to="/Authenticated-Blog-Dashboard/login" 
+            to="/login" 
             className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200"
           >
             Login
           </Link>
           <Link 
-            to="/Authenticated-Blog-Dashboard/signup" 
+            to="/signup" 
             className="px-6 py-2 border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 transition-colors duration-200"
           >
             Sign Up

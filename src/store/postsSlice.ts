@@ -26,13 +26,13 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
   const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
   return response.data.map((post: any) => ({
     ...post,
-    createdAt: new Date().toISOString(), // إضافة وقت افتراضي للبوستات القديمة
+    createdAt: new Date().toISOString(),
   }));
 });
 
 export const addPost = createAsyncThunk('posts/addPost', async (post: Omit<Post, 'id' | 'createdAt'>, { getState }) => {
   const state = getState() as RootState;
-  const userId = state.auth.user ? 1 : 0; // استخدام userId من الـ auth state
+  const userId = state.auth.user ? 1 : 0; 
   const newPost = {
     ...post,
     userId,

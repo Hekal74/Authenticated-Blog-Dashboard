@@ -13,7 +13,6 @@ function Posts() {
     dispatch(fetchPosts());
   }, [dispatch]);
 
-  // Pagination Logic
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);

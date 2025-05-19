@@ -19,7 +19,7 @@ function NewPost() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newPost = { title, body, userId: 1 }; // أضفنا userId بقيمة ثابتة (يمكن نجيبها من auth لاحقاً)
+    const newPost = { title, body, userId: 1 };
     await dispatch(addPost(newPost));
     navigate('/posts');
   };
