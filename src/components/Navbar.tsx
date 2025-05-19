@@ -1,14 +1,15 @@
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../store/authSlice'
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../store/authSlice';
+import { RootState } from '../store';
 
 function Navbar() {
-  const { isAuthenticated } = useSelector((state) => state.auth)
-  const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout())
-  }
+    dispatch(logout());
+  };
 
   return (
     <nav className="bg-blue-600 text-white p-4">
@@ -31,7 +32,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
