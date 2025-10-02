@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface AuthState {
+export interface AuthState {
   isAuthenticated: boolean;
   user: string | null;
   email: string | null;
@@ -22,26 +22,50 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: (state, action: { payload: { username: string; email: string; position?: string; location?: string; token: string } }) => {
+    login: (
+      state,
+      action: PayloadAction<{
+        username: string;
+        email: string;
+        position?: string;
+        location?: string;
+        token: string;
+      }>
+    ) => {
       state.isAuthenticated = true;
       state.user = action.payload.username;
       state.email = action.payload.email;
-      state.position = action.payload.position || localStorage.getItem('position') || null;
-      state.location = action.payload.location || localStorage.getItem('location') || null;
+      state.position =
+        action.payload.position || localStorage.getItem('position') || null;
+      state.location =
+        action.payload.location || localStorage.getItem('location') || null;
       state.token = action.payload.token;
+
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('username', action.payload.username);
       localStorage.setItem('email', action.payload.email);
-      if (action.payload.position) localStorage.setItem('position', action.payload.position);
-      if (action.payload.location) localStorage.setItem('location', action.payload.location);
+      if (action.payload.position)
+        localStorage.setItem('position', action.payload.position);
+      if (action.payload.location)
+        localStorage.setItem('location', action.payload.location);
     },
-    signup: (state, action: { payload: { username: string; email: string; position: string; location: string; token: string } }) => {
+    signup: (
+      state,
+      action: PayloadAction<{
+        username: string;
+        email: string;
+        position: string;
+        location: string;
+        token: string;
+      }>
+    ) => {
       state.isAuthenticated = true;
       state.user = action.payload.username;
       state.email = action.payload.email;
       state.position = action.payload.position;
       state.location = action.payload.location;
       state.token = action.payload.token;
+
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('username', action.payload.username);
       localStorage.setItem('email', action.payload.email);
@@ -55,6 +79,7 @@ const authSlice = createSlice({
       state.position = null;
       state.location = null;
       state.token = null;
+
       localStorage.removeItem('token');
       localStorage.removeItem('username');
       localStorage.removeItem('email');
