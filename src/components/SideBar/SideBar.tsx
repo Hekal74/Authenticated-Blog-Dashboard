@@ -23,7 +23,7 @@ const SideBar: React.FC<SideBarProps> = ({ closeSidebar, isOpen, userName = 'Use
   const handleLogout = () => {
     googleLogout();
     localStorage.removeItem('userName');
-    window.location.href = '/login';
+    window.location.href = '/';
   };
 
   return (
